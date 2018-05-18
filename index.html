@@ -11,8 +11,12 @@
         <h1>To-Do List</h1>
         <p>A place to store the things that you have to do!</p>
         <input type="text" placeholder="Filter your to-dos">
-        <button ng-if=>Complete</button><p ng-repeat="task in todo.todolist" ng-class= "true: bold, false:">{{task.task}}</p>
-        {{2+2}}
+        <ol>
+        <li ng-repeat="tasks in todo.todolist" ng-controller="secondController" ng-class='{li: true, complete: class1}'>
+            <button id="completeButton" ng-click='changeStyle()' ng-if="clicked">Complete</button>{{tasks.task}}<span>x</span></li>
+        </ol>
+        <input type="text" placeholder="Add your to do"></br>
+        <button id="add">Add</button>
     </div>
     <script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.6.5/angular.min.js'></script>
     <script src="module.js"></script>
