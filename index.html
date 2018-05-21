@@ -10,13 +10,13 @@
     <div id="toDoBlock" ng-controller="TodoController as todo">
         <h1>To-Do List</h1>
         <p>A place to store the things that you have to do!</p>
-        <input type="text" placeholder="Filter your to-dos">
+        <input type="text" placeholder="Filter your to-dos" ng-model="filtercontent">
         <ol>
-        <li ng-repeat="tasks in todo.todolist" ng-controller="secondController" ng-class='{li: true, complete: class1}'>
-            <button id="completeButton" ng-click='changeStyle()' ng-if="clicked">Complete</button>{{tasks.task}}<span>x</span></li>
+        <li ng-repeat="tasks in todo.todolist | filter: filtercontent track by $index" ng-class="tasks.className">
+            <button id="completeButton" ng-if="tasks.className !== 'complete'" ng-click="todo.changeStyle($index)">Complete</button>{{tasks.task}}<span ng-click="todo.remove($index)">x</span></li>
         </ol>
-        <input type="text" placeholder="Add your to do"></br>
-        <button id="add">Add</button>
+        <input type="text" placeholder="Add your to do" ng-model="newToDo"></br>
+        <button id="add" ng-click="todo.add(newToDo)">Add</button>
     </div>
     <script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.6.5/angular.min.js'></script>
     <script src="module.js"></script>

@@ -20,21 +20,25 @@
         }
         const vm = this;
         vm.todolist = [task1, task2, task3, task4];
+        vm.class1 =false;
+        vm.clicked = true;
+        vm.changeStyle = function(index){
+            let x = vm.todolist[index];
+            x.className = "complete";
+            vm.todolist[index] = x;
+        }
+        vm.add = function(newToDo){
+            let tasknew = {
+                task: newToDo,
+                className: ""
+            }
+            vm.todolist.push(tasknew);
+        }
+        vm.remove = function(index){
+            vm.todolist.splice(index, 1);
+        }
     }
 
-        var fetch = angular.module('todoapp', []);
-
-        fetch.controller('secondController', ['$scope', '$http', function ($scope, $http) {
-          $scope.class1 = false;
-          $scope.clicked = true;
-
-          $scope.changeStyle = function(){
-            $scope.class1 = true;
-            $scope.clicked = false;
-          }
-        }])
-
-    
     angular
         .module("todoapp")
         .controller("TodoController", TodoController);
